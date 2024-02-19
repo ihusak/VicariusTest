@@ -1,0 +1,17 @@
+@if(menuItem.children) {
+  <li ngbDropdown class="nav-item dropdown">
+    <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+      aria-haspopup="true" aria-expanded="false">
+      <i class="bi {{menuItem.icon}}"></i>  {{menuItem.title}}
+    </a>
+    <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @for (child of menuItem.children; track child.route) {
+        <a ngbDropdownItem class="dropdown-item" [routerLink]="child.route" [queryParams]="{title: child.title}"><i class="bi {{child.icon}}"></i> {{child.title}}</a>
+    }
+  </div>
+  </li>
+} @else {
+  <li class="nav-item active">
+    <a class="nav-link" [routerLink]="menuItem.route" [queryParams]="{title: menuItem.title}"><i class="bi {{menuItem.icon}}"></i> {{menuItem.title}}</a>
+  </li>
+}
