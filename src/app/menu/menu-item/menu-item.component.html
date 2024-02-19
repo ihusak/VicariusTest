@@ -6,7 +6,7 @@
     </a>
     <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
     @for (child of menuItem.children; track child.route) {
-        <a ngbDropdownItem class="dropdown-item" [routerLink]="child.route" [queryParams]="{title: child.title}"><i class="bi {{child.icon}}"></i> {{child.title}}</a>
+      <app-menu-item [menuItem]="child"></app-menu-item>
     }
   </div>
   </li>

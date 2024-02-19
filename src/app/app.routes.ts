@@ -3,19 +3,21 @@ import { CommonPageComponent } from './common-page/common-page.component';
 import { dataMenuItems } from './menu/pages-data';
 import { MenuItem } from './menu/menu-data.service';
 
-export const routes: Routes = [];
-dataMenuItems.forEach((item: MenuItem) => {
-  if(!item.children) {
-    routes.push({
-      path: item.route,
-      component: CommonPageComponent
-    });
-  } else {
-    item.children.forEach((childItem: MenuItem) => {
+const route = generateRoutes();
+
+function generateRoutes(): (data: MenuItem[]) => Routes {
+  let routes: Routes = [];
+  return (data: MenuItem[]) => {
+      data.forEach((item: MenuItem) => {
       routes.push({
-        path: childItem.route,
+        path: item.route,
         component: CommonPageComponent
       });
+      if(item.children) {
+        route(item.children);
+      }
     })
+    return routes;
   }
-})
+}
+export const routes: Routes = route(dataMenuItems);

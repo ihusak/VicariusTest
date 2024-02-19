@@ -29,7 +29,26 @@ export const dataMenuItems: MenuItem[] = [
       {
         title: 'Product 2',
         icon: 'bi-sticky',
-        route: 'products/2'
+        route: 'products/2',
+        children: [
+          {
+            title: "Electronics",
+            icon: "bi-sticky",
+            route: "products/electronics",
+            children: [
+              {
+                title: "Laptops",
+                icon: "bi-sticky",
+                route: "products/electronics/laptops",
+              },
+              {
+                title: "Smartphones",
+                icon: "bi-sticky",
+                route: "products/electronics/smartphones",
+              }
+            ]
+          }
+        ]
       }
     ]
   },
